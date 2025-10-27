@@ -7,13 +7,13 @@ const userSchema = new mongoose.Schema({
     username: {
         type: String,
         required: true,
-        uniquire: true,
+        unique: true,
         trim: true
     },
     password: {
         type: String,
         required: true,
-        length: 10
+        minlength: 10
     },
     firstName: {
         type: String,
@@ -27,10 +27,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    created_at: {
-        type: Date,
-        default: Date.now
-    }
+    // created_at: {
+    //     type: Date,
+    //     default: Date.now
+    // }
 });
 
 //krypterar (hasha) lösenord
@@ -60,7 +60,7 @@ userSchema.statics.register = async function (username, password) {
         return user;
     } catch (error) {
         throw error;
-    }
+    };
 };
 
 
@@ -92,7 +92,6 @@ userSchema.statics.login = async function(username, password) {
             throw new Error("Felaktigt användarnamn eller lösenord");
         }
 
-        //om allt stämmer
         return user;
     } catch (error) {
         throw error;

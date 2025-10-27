@@ -1,0 +1,32 @@
+ # Moment 4 - Autentisering och säkerhet, Backend-baserad webbutveckling
+ Repositoriet är byggt med Express och är ett REST API som sparar användare och begränsar 
+ åtkomligheten till sidan "Min profil" för användare som inte är inloggade och har ett JWT-token.
+
+ ## Installation
+ API:t använder databasen MongoDB. Använd kommandot npm install för att installera de nödvändiga paketen. Databastabellerna har följande uppbyggnad:
+
+ | Tabellnamn | Fält |
+ | ---------- | ---- |
+ | Tabell 1   |  **username**: type: String, required: true, unique: true, trim: true, **password**: type: String, required: true, minlength: 10, **firstName**: type: String, required: true, **lastName**: type: String, required: true, **email**: type: String, required: true |
+
+
+
+ ## Användning
+Så här kan man nå API:t:
+
+| Metod  | Ändpunkt    | Beskrivning                                                                      |
+| ------ | ----------- | -------------------------------------------------------------------------------- |
+| GET    | /profile    | Användarens profil. Kräver ett token.                                            |
+| POST   | /register   | Registrerar en ny användare.                                                     |
+| POST   | /signin     | Loggar in en användare.                                                          |
+
+
+### Objekt-uppbyggnad
+Ett objekt returneras/skickas som JSON med nedan struktur:
+{
+   "username": "JonSnow",
+   "password": "GhostGhostt",
+   "firstName": "Jon",
+   "lastName": "Snow",
+   "email": "jon.snow@hbo.com"
+}
